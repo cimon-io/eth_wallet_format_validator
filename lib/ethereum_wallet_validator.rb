@@ -11,6 +11,6 @@ class EthereumWalletValidator < ActiveModel::EachValidator
   private
 
   def valid?(value)
-    Eth::Utils.valid_address?(value)
+    value.present? && Eth::Utils.valid_address?(value)
   end
 end

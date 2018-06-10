@@ -38,4 +38,25 @@ RSpec.describe 'EthereumWalletValidator' do
       it(%("#{value}" should be valid)) { expect(model).to be_valid }
     end
   end
+
+  context 'with invalid Ethereum wallets' do
+    [
+      '0xAbcF2745fbC5969E5A791c9AC3435F81C41800F',
+      '0xCE18E8fc50B37313381033D20838577Cf04BC6D6f',
+      '0xB006b67448425bf0871e36B0D4Bb90B0e9472af4',
+      '0xcee9311e15822387b1784FFC0e000adFfc5647B5',
+      '0x018A600ff69AA839cF5c3CC755C565b0Ef5eA80F',
+      '0xE925516d8987fF5b3d7DE4341713F6AB4AF13305',
+      '0xE4D01bC0151aD503AE0e40fa651199b08d302Ca9',
+      '0x104ee58ceA0f87DfC0ceD0eE7615BE4b8Be88b9c',
+      nil,
+      '',
+      ' '
+    ].each do |value|
+      model = Model.new
+      model.field = value
+
+      it(%("#{value}" should be invalid)) { expect(model).not_to be_valid }
+    end
+  end
 end
