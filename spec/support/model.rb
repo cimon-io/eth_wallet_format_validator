@@ -5,6 +5,7 @@ require 'ethereum_wallet_validator'
 
 class Model
   include ActiveModel::Validations
+  include ActiveModel::Model
 
   attr_accessor :field
 
