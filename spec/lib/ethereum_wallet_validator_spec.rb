@@ -32,8 +32,7 @@ RSpec.describe 'EthereumWalletValidator' do
       0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB
       0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb
     ].each do |value|
-      model = Model.new
-      model.field = value
+      model = Model.new(field: value)
 
       it(%("#{value}" should be valid)) { expect(model).to be_valid }
     end
@@ -53,8 +52,7 @@ RSpec.describe 'EthereumWalletValidator' do
       '',
       ' '
     ].each do |value|
-      model = Model.new
-      model.field = value
+      model = Model.new(field: value)
 
       it(%("#{value}" should be invalid)) { expect(model).not_to be_valid }
     end
